@@ -3,7 +3,7 @@ FROM node:16-alpine as build-frontend
 
 WORKDIR /app/client
 
-COPY client/package.json client/package-lock.json ./
+COPY /client/package.json /client/package-lock.json ./
 
 RUN npm install
 
@@ -16,12 +16,12 @@ FROM node:16-alpine
 
 WORKDIR /app
 
-COPY server/package.json server/package-lock.json client/package.json client/package-lock.json ./
+COPY /server/package.json /server/package-lock.json /client/package.json /client/package-lock.json ./
 
 RUN npm install
 
-COPY server ./server
-COPY client/ ./client
+COPY /server ./server
+COPY /client ./client
 
 # Copy the built Vue files to the client's public directory
 COPY --from=build-frontend /app/client/dist /app/client/public
