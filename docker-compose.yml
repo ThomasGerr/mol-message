@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  websocket-server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+
+  frontend-server:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
