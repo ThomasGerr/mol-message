@@ -5,15 +5,11 @@ const WebSocket = require('ws');
 const path = require('path');
 const cors = require('cors');
 const app = express();
+const port = 443;
 
 const server = http.createServer(app);
 
 app.use(cors());
-
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
-
 
 const wss = new WebSocket.Server({ server });
 
@@ -33,6 +29,6 @@ wss.on('connection',(ws) => {
   });
 });
 
-server.listen(3000, () => {
-  console.log('Server is listening on port 3000');
+server.listen(port, () => {
+  console.log('Server is listening on port ' + port );
 });
